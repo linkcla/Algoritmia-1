@@ -24,7 +24,7 @@ public class Main {
         System.out.println("¿Qué elemento quieres buscar?");
         int elemento = sc.nextInt();
 
-        //Busca el elemento en la lista
+        //Busca el elemento en la lista.
         int pos = Collections.binarySearch(elementos, elemento);
 
         //Si el elemento no esta en el conjunto --> pos < 0
