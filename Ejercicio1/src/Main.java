@@ -36,7 +36,7 @@ public class Main {
     }
 
     private static int busquedaBinaria(ArrayList<Integer> elementos, int elemento){
-        //Busca el elemento en la lista.
+        //Busca el elemento en la lista
         int bajo = 0;
         int alto = elementos.size();
         int indice;
