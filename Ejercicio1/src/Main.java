@@ -25,14 +25,37 @@ public class Main {
         int elemento = sc.nextInt();
 
         //Busca el elemento en la lista.
-        int pos = Collections.binarySearch(elementos, elemento);
+        int pos = busquedaBinaria(elementos, elemento);
 
         //Si el elemento no esta en el conjunto --> pos < 0
-        if (pos >= 0) {
+        if (pos != -1) {
             System.out.println("El elemento se encuentra en la posición: " + pos);
         } else {
             System.out.println("El elemento no se encuentra en el conjunto");
         }
+    }
+
+    private static int busquedaBinaria(ArrayList<Integer> elementos, int elemento){
+        //Busca el elemento en la lista
+        int bajo = 0;
+        int alto = elementos.size();
+        int indice;
+        while (alto > bajo){
+            indice = (int)(alto + bajo)/2;
+            if (elemento == elementos.get(indice)){
+                //Ha encontrado el elemento
+                return indice;
+            }
+            if (elemento > elementos.get(indice)){
+                bajo = indice;
+            } else if (elemento < elementos.get(indice)){
+                alto = indice;
+            } else {
+                //No ha encontrado el elemento bajo > alto
+                break;
+            }
+        }
+        return -1;
     }
 }
 
