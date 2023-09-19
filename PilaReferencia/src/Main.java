@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        //
-        PilaReferencia<Integer> pila = new PilaReferencia<Integer>();
+
+        PilaReferencia<Integer> pila = new PilaReferencia<>();
         pila.push(0);
         try {
             int i = pila.pop();
