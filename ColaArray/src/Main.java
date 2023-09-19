@@ -8,5 +8,4 @@ public class Main {
         PilaArray p = new PilaArray(scanner.nextInt());
         // Usar metodos push, pop y top para tratar con la pila teniendo en cuenta que hay throws
     }
-
 }
