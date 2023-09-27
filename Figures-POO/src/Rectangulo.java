@@ -1,3 +1,6 @@
+/**
+ * Clase que permite construir Rectangulos. Hereda de la clase {@link Figura}
+ */
 public class Rectangulo extends Figura{
     private double h;
     private double b;
@@ -28,19 +31,33 @@ public class Rectangulo extends Figura{
         this.b = b;
     }
 
+    /**
+     * Calculo del area del rectangulo
+     * @return valor del area del rectangulo
+     */
     @Override
     public double area() {
         return b * h;
     }
 
+    /**
+     * Calculo del perimetro de un rectangulo
+     * @return valor del perimetro de un rectangulo
+     */
     @Override
     public double perimetro() {
         return (b * 2) + (h * 2);
     }
 
+    /**
+     * Permite comparar dos objetos de la clase {@link Figura}
+     * @param f objeto a ser comparado.
+     * @return un valor positivo si el area del objeto propio es mayor,
+     *          un valor negativo si es menor y 0 si son iguales.
+     */
     @Override
     public int compareTo(Figura f) {
-        return (int) (this.area() - f.area());
+        return Double.compare(this.area(),f.area());
     }
 
     /**
