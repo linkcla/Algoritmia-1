@@ -2,8 +2,12 @@ public class Rectangulo extends Figura{
     private double h;
     private double b;
 
-    public Rectangulo(int x, int y, double h, double b) {
-        super(x, y);
+    /**
+     * Permite crear instancias de la clase Rectangulo
+     * @param h
+     * @param b
+     */
+    public Rectangulo(double h, double b) {
         this.h = h;
         this.b = b;
     }
@@ -39,6 +43,10 @@ public class Rectangulo extends Figura{
         return (int) (this.area() - f.area());
     }
 
+    /**
+     * Metodo toString para la clase {@link Rectangulo}
+     * @return el objeto de la clase {@link Rectangulo} convertido a String
+     */
     @Override
     public String toString(){
         return ("Rectangulo con base: " + b + ", altura: " + h + ", area = " + area() + " y perimetro: " + perimetro());

@@ -2,8 +2,12 @@ public class Triangulo extends Figura{
     private double b;
     private double h;
 
-    public Triangulo( int x, int y, double base, double altura){
-        super(x,y);
+    /**
+     * Permite contruir instancias de la clase Triangulo
+     * @param base longitud de la base del triangulo
+     * @param altura longitud de la altura del triangulo
+     */
+    public Triangulo(double base, double altura){
         this.b = base;
         this.h = altura;
     }

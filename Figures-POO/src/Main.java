@@ -54,17 +54,37 @@ public class Main {
                 }
             }
         }
-        for (ArrayList<Figura> figura : figuras) {
+
+        for (ArrayList<Figura> figura : figurasSeparadas) {
             Collections.sort(figura);
         }
-
-
+        Collections.sort(figuras, Collections.reverseOrder());
+        String [] nombres = {"Circulo", "Triangulo", "Cuadrado", "Rectangulo"};
         System.out.println("La suma de las areas de todas las figuras es: " + areaTotal +"\n" +
-                           "La suma de los perimetros de todas las figuras es: " + perimetroTotal + "\n" +
-                           "--------La suma de las areas y perimetros por separado--------");
-        System.out.println("\t * Circulo \n\t\tArea:" + areasT[0] + "\n\t\tPerimetro:" + perimetrosT[0]);
-        System.out.println("\t * Triangulo \n\t\tArea:" + areasT[1] + "\n\t\tPerimetro:" + perimetrosT[1]);
-        System.out.println("\t * Cuadrado \n\t\tArea:" + areasT[2] + "\n\t\tPerimetro:" + perimetrosT[2]);
-        System.out.println("\t * Rectangulo \n\t\tArea:" + areasT[3] + "\n\t\tPerimetro:" + perimetrosT[3]);
+                           "La suma de los perimetros de todas las figuras es: " + perimetroTotal + "\n");
+        System.out.println("--------La suma de las areas y perimetros por separado--------\n");
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.printf(
+                    "\t * %s \n\t\tÁrea: %.2f \n\t\tPerímetro: %.2f \n",
+                    nombres[i], areasT[i], perimetrosT[i]
+            );
+        }
+        System.out.println("-------------Área máxima y mínima de cada figura--------------\n");
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.printf(
+                    "\t * %s \n\t\tÁrea max: %.2f \n\t\tÁrea min: %.2f \n",
+                    figurasSeparadas[i].get(i).getClass().getName(), figurasSeparadas[i].get(figurasSeparadas[i].size()-1).area(), figurasSeparadas[i].get(i).area()
+            );
+        }
+        System.out.println("---------------------------TOP 10-----------------------------\n\t Top 10 por areas:\n");
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("\t\t* Top" + (i+1) + ": %s\n", figuras.get(i));
+        }
+        Comparator<Figura> comparadorPerimetros = Comparator.comparingDouble(Figura::perimetro);
+        Collections.sort(figuras, comparadorPerimetros.reversed());
+        System.out.println("\t Top 10 por perimetro:\n");
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("\t\t* Top" + (i+1) + ": %s\n", figuras.get(i));
+        }
     }
 }

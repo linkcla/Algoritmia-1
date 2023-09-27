@@ -1,6 +1,10 @@
 public class Cuadrado extends Rectangulo{
-    public Cuadrado(int x, int y, double lado) {
-        super(x,y,lado,lado);
+    /**
+     * Constructor de la clase que permite crear nuevas instancias de Cuadrados.
+     * @param lado longitud del lado
+     */
+    public Cuadrado(double lado) {
+        super(lado,lado);
     }
 
     @Override

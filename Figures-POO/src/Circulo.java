@@ -1,8 +1,11 @@
 public class Circulo extends Figura{
     private double r;
 
-    public Circulo(int x, int y, double r) {
-        super(x, y);
+    /**
+     * Constructor de la clase Circulo
+     * @param r radio del circulo
+     */
+    public Circulo(double r) {
         this.r = r;
     }
 
