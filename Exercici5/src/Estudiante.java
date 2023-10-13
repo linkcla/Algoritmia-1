@@ -4,15 +4,19 @@ public class Estudiante extends Persona {
     private Curso curso;
     private int cuota;
 
-    public Estudiante(String nombre, String direccion, Programa programa, Curso curso, int cuota) {
-        super(nombre, direccion);
-        this.programa = programa;
-        this.curso = curso;
-        this.cuota = cuota;
+    public Estudiante() {
+        super();
+        this.programa = genRanProg();
+        this.curso = genRanCurso();
+        this.cuota = RAN.nextInt(800,1501);
     }
 
+    private Curso genRanCurso() { return Curso.values()[RAN.nextInt(Curso.values().length)];}
 
-    public enum Programa {
+    private Programa genRanProg() { return Programa.values()[RAN.nextInt(Programa.values().length)];}
+
+
+    private enum Programa {
         INFORMATICA,
         INDUSTRIAL,
         MATEMATICAS,
@@ -23,7 +27,7 @@ public class Estudiante extends Persona {
 
     }
 
-    public enum Curso {
+    private enum Curso {
         PRIMERO,
         SEGUNDO,
         TERCERO,
@@ -65,9 +69,9 @@ public class Estudiante extends Persona {
         }
         Estudiante estudiante = (Estudiante) o;
         return super.equals(o) &&
-               this.programa == estudiante.getPrograma() &&
                this.programa == estudiante.programa &&
-               this.cuota == estudiante.getCuota();
+               this.curso == estudiante.curso &&
+               this.cuota == estudiante.cuota;
     }
 
     @Override

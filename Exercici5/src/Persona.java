@@ -1,12 +1,24 @@
-import java.util.Objects;
+import java.util.Random;
 
 public class Persona {
     private String nombre;
     private String direccion;
 
-    public Persona(String Nombre, String Direccion) {
-        this.nombre = Nombre;
-        this.direccion = Direccion;
+    public static final Random RAN = new Random();
+
+    public Persona() {
+        this.nombre = generateRandomStrings();
+        this.direccion = generateRandomStrings();
+    }
+
+    private String generateRandomStrings() {
+        // El profesor dijo que para generar los nombres y las direcciones
+        // podiamos crear Strings aleatorios.
+        StringBuilder name = new StringBuilder();
+        for (int i = 0; i < RAN.nextInt(4,8); i++) {
+            name.append((char) RAN.nextInt(97,123));
+        }
+        return name.toString();
     }
 
     public void setNombre(String nombre) {
@@ -36,8 +48,8 @@ public class Persona {
         }
         Persona persona = (Persona) o;
 
-        return this.nombre.equals(persona.getNombre()) &&
-               this.direccion.equals(persona.getDireccion());
+        return this.nombre.equals(persona.nombre) &&
+               this.direccion.equals(persona.direccion);
     }
 
     @Override

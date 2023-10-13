@@ -1,7 +1,16 @@
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        Estudiante e1 = new Estudiante("a","e", Estudiante.Programa.DERECHO, Estudiante.Curso.PRIMERO,1);
-        Estudiante e2 = new Estudiante("a","e", Estudiante.Programa.DERECHO, Estudiante.Curso.PRIMERO,1);
-        System.out.println(e1.equals(e2));
+        Random ran = new Random();
+        int numPers = 1000000;
+        int tipoPers;
+        for (int i = 0; i <= numPers; i++) {
+            tipoPers = ran.nextInt(2);
+            switch (tipoPers) {
+                case 0 -> { Estudiante e = new Estudiante();}
+                case 1 -> { Profesor p = new Profesor();}
+            }
+        }
     }
 }
