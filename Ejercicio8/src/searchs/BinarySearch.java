@@ -1,19 +1,35 @@
 package searchs;
 
-public class BinarySearch {
+/**
+ * It is capable of performing binary searches in an iterative way and in a recursive way.
+ *
+ * @param <E> type of element of the data set.
+ * @author jcasben
+ * @author linkcla
+ */
+public class BinarySearch<E extends Comparable<E>> {
+    private int numberOfAccess;
+
+    /**
+     * Constructor method for {@link BinarySearch}.
+     */
+    public BinarySearch() {
+        numberOfAccess = 0;
+    }
 
     /**
      * Performs an iterative binary search to find the specified target element in a sorted array.
-     *
+     * <br>
+     * Complexity Order: O(log n), because in each iteration we reduce to half the search space.
      * @param elements An array of elements to search within.
      * @param target The element to find in the array.
-     * @param <E> The type of elements in the array, which must implement the Comparable interface.
      * @return The index of the target element if found, or -1 if not found.
      */
-    public static <E extends Comparable<E>> int binarySearchIterative(E[] elements, E target) {
+    public int binarySearchIterative(E[] elements, E target) {
         int left = 0, right = elements.length - 1;
         int center = (left + right) / 2;
         while (left <= right) {
+            numberOfAccess++;
             int comparison = elements[center].compareTo(target);
             if (comparison == 0) {
                 return center; // Element found.
@@ -30,15 +46,16 @@ public class BinarySearch {
 
     /**
      * Performs a recursive binary search to find the specified target element in a sorted array of generic elements.
-     *
+     * <br>
+     * Complexity Order: O(log n), because in each iteration we reduce to half the search space.
      * @param array An array of elements to search within.
      * @param target The element to find in the array.
      * @param left The left boundary of the current search range.
      * @param right The right boundary of the current search range.
-     * @param <E> The type of elements in the array, which must implement the Comparable interface.
      * @return The index of the target element if found, or -1 if not found.
      */
-    public static <E extends Comparable<E>> int binarySearchRecursive(E[] array, E target, int left, int right) {
+    public int binarySearchRecursive(E[] array, E target, int left, int right) {
+        numberOfAccess++;
         if (left > right) {
             return -1; // Element not found in the array.
         }
@@ -52,6 +69,11 @@ public class BinarySearch {
         }
     }
 
-
-
+    /**
+     * Getter method for numberOfAccess.
+     * @return amount of access to elements of the set.
+     */
+    public int getNumberOfAccess() {
+        return numberOfAccess;
+    }
 }

@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @author linkcla
  */
 public class RMOMatrix {
-    private final Number[] matrix;
+    private Number[] matrix;
     private final int rows;
     private final int columns;
     private int numOfMult;
@@ -37,8 +37,8 @@ public class RMOMatrix {
      * @throws IndexOutOfBoundsException If the provided row or column index is out of bounds for this matrix.
      */
     public void setNumber(int row, int column, Number number) throws IndexOutOfBoundsException {
-        if (row > this.rows || column > this.columns) throw new IndexOutOfBoundsException();
-        matrix[((row - 1) * columns + column) - 1] = number;
+        if (row > this.rows || column > this.columns || row < 0 || column < 0) throw new IndexOutOfBoundsException();
+        matrix[((row) * columns + column)] = number;
     }
 
     /**
@@ -50,12 +50,14 @@ public class RMOMatrix {
      * @throws IndexOutOfBoundsException If the provided row or column index is out of bounds for this matrix.
      */
     public Number getNumberInPos(int row, int column) throws IndexOutOfBoundsException {
-        if (row > this.rows || column > this.columns) throw new IndexOutOfBoundsException();
-        return matrix[((row - 1) * columns + column) - 1];
+        if (row > this.rows || column > this.columns || column < 0 || row < 0) throw new IndexOutOfBoundsException();
+        return matrix[((row) * columns + column)];
     }
 
     /**
      * Multiplies this RMOMatrix by another RMOMatrix and returns the result as a new RMOMatrix.
+     * <br>
+     * Complexity order: O(n^3)
      *
      * @param matrix The RMOMatrix to be multiplied with this matrix.
      * @return A new RMOMatrix representing the result of the matrix multiplication.
@@ -88,15 +90,11 @@ public class RMOMatrix {
      * @return result of adding x by y.
      */
     private Number add(Number x, Number y) {
-        if (x instanceof Integer || y instanceof Integer) {
-            return x.intValue() + y.intValue();
-        } else if (x instanceof Double || y instanceof Double) {
-            return x.doubleValue() + y.doubleValue();
-        } else if (x instanceof Long || y instanceof Long) {
-            return x.longValue() + y.longValue();
-        } else {
-            return x.floatValue() + y.floatValue();
-        }
+        if (x instanceof Integer || y instanceof Integer) return x.intValue() + y.intValue();
+        else if (x instanceof Double || y instanceof Double) return x.doubleValue() + y.doubleValue();
+        else if (x instanceof Long || y instanceof Long) return x.longValue() + y.longValue();
+        else if (x instanceof Short || y instanceof Short) return x.shortValue() + y.shortValue();
+        else return x.floatValue() + y.floatValue();
     }
 
     /**
@@ -106,29 +104,14 @@ public class RMOMatrix {
      * @param y Number.
      * @return the result of multiplying x by y.
      */
-
     private Number mult(Number x, Number y) {
         numOfMult++;
-        if (x instanceof Integer || y instanceof Integer) {
-            return x.intValue() * y.intValue();
-        } else if (x instanceof Double || y instanceof Double) {
-            return x.doubleValue() * y.doubleValue();
-        } else if (x instanceof Long || y instanceof Long) {
-            return x.longValue() * y.longValue();
-        } else {
-            return x.floatValue() * y.floatValue();
-        }
+        if (x instanceof Integer || y instanceof Integer) return x.intValue() * y.intValue();
+        else if (x instanceof Double || y instanceof Double) return x.doubleValue() * y.doubleValue();
+        else if (x instanceof Long || y instanceof Long) return x.longValue() * y.longValue();
+        else if (x instanceof Short || y instanceof Short) return x.shortValue() * y.shortValue();
+        else return x.floatValue() * y.floatValue();
     }
-
-    /**
-     * A custom exception to indicate an error of incompatible dimensions when multiplying matrix.
-     */
-    public static class IncompatibleDimensionException extends Exception {
-        public IncompatibleDimensionException() {
-            super("Error: Incompatible dimension.");
-        }
-    }
-
 
     /**
      * Gets the number of times the multiplication has been done between two cells.
@@ -167,6 +150,14 @@ public class RMOMatrix {
     }
 
     /**
+     * Sets the linear array that represents the {@link RMOMatrix}.
+     * @param matrix the linear array that will represent the matrix.
+     */
+    public void setMatrix(Number[] matrix) {
+        this.matrix = matrix;
+    }
+
+    /**
      * Determines if two {@link RMOMatrix} are equals.
      *
      * @param rmoMatrix {@link RMOMatrix} to be compared with.
@@ -175,5 +166,17 @@ public class RMOMatrix {
      */
     public boolean areEquals(RMOMatrix rmoMatrix) {
         return Arrays.equals(this.getMatrix(), rmoMatrix.getMatrix());
+    }
+
+    /**
+     * A custom exception to indicate an error of incompatible dimensions when multiplying matrix.
+     */
+    public static class IncompatibleDimensionException extends Exception {
+        /**
+         * Constructor method for {@link IncompatibleDimensionException}.
+         */
+        public IncompatibleDimensionException() {
+            super("ERROR: Incompatible dimensions.");
+        }
     }
 }
