@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package tree;
 
 import org.junit.Before;
@@ -33,8 +29,8 @@ public class BinaryTreeReferenceTest {
     public void testIsEmpty() {
         System.out.println("isEmpty");
         BinaryTree<Integer> instance = new BinaryTreeReference();
-        assertEquals(true, instance.isEmpty());
-        assertEquals(false, tree.isEmpty());
+        assertTrue(instance.isEmpty());
+        assertFalse(tree.isEmpty());
     }
 
     /**
@@ -43,9 +39,9 @@ public class BinaryTreeReferenceTest {
     @Test
     public void testInsertContains() {
         System.out.println("insertContains");
-        assertEquals(false,tree.contains(25));
+        assertFalse(tree.contains(25));
         tree.insert(25);
-        assertEquals(true,tree.contains(25));
+        assertTrue(tree.contains(25));
     }
 
     /**
@@ -71,15 +67,15 @@ public class BinaryTreeReferenceTest {
     @Test
     public void testGetMother() {
         System.out.println("getMother");
-        assertEquals(null, tree.getMother(50));
+        assertNull(tree.getMother(50));
         int i = tree.getMother(30);
         assertEquals(50, i);
         i = tree.getMother(70);
         assertEquals(50,i); 
         i = tree.getMother(10);
         assertEquals(20, i);
-        assertEquals(null, tree.getMother(15));
-        assertEquals(null, tree.getMother(tree.getRoot()));
+        assertNull(tree.getMother(15));
+        assertNull(tree.getMother(tree.getRoot()));
     }
 
     /**
@@ -91,4 +87,55 @@ public class BinaryTreeReferenceTest {
         int i = tree.getRoot();
         assertEquals(50, i);
     }
+
+    @Test
+    public void testLongestBranchAfterInsertionAndRemoval() {
+        System.out.println("longestBranchAfterInsertionAndRemoval");
+        tree = new BinaryTreeReference<>();
+        tree.insert(55);
+        tree.insert(60);
+        tree.insert(58);
+        tree.insert(56);
+        tree.insert(59);
+        assertEquals(3, tree.longestBranch());
+        tree.insert(57);
+        assertEquals(4, tree.longestBranch());
+        tree.insert(61);
+        assertEquals(4, tree.longestBranch());
+        tree.insert(62);
+        assertEquals(4, tree.longestBranch());
+    }
+
+
+    @Test
+    public void testGetMotherAfterMultipleInsertions() {
+        System.out.println("getMotherAfterMultipleInsertions");
+        tree = new BinaryTreeReference<>();
+        tree.insert(55);
+        tree.insert(60);
+        tree.insert(58);
+        tree.insert(56);
+        tree.insert(59);
+        tree.insert(57);
+
+        assertEquals(60, (int) tree.getMother(58));
+        assertEquals(58, (int) tree.getMother(56));
+        assertEquals(56, (int) tree.getMother(57));
+        assertNull(tree.getMother(55));
+    }
+
+    @Test
+    public void testGetRootAfterInsertions() {
+        System.out.println("getRootAfterInsertions");
+        tree = new BinaryTreeReference<>();
+        tree.insert(55);
+        tree.insert(60);
+        tree.insert(58);
+        tree.insert(56);
+        tree.insert(59);
+        tree.insert(57);
+
+        assertEquals(55, (int) tree.getRoot());
+    }
+
 }

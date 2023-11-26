@@ -10,11 +10,16 @@ public class BinaryTreeReference<E extends Comparable<E>> implements BinaryTree<
         root = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty() {
         return root == null;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void insert(E e) {
         // Pone en root el nuevo árbol con el elemento añadido
@@ -40,7 +45,9 @@ public class BinaryTreeReference<E extends Comparable<E>> implements BinaryTree<
         // Si el elemento ya esta en el árbol no hará nada.
         return current;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean contains(E e) {
         return containsRecursive(root, e);
@@ -65,6 +72,9 @@ public class BinaryTreeReference<E extends Comparable<E>> implements BinaryTree<
         return leftResult || rightResult;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int longestBranch() {
         return longestBranchRecursive(root);
@@ -84,6 +94,9 @@ public class BinaryTreeReference<E extends Comparable<E>> implements BinaryTree<
         return 1 + Math.max(tamLeft,tamRight);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public E getMother(E e) {
         return getMotherRecursive(root, e);
@@ -113,6 +126,9 @@ public class BinaryTreeReference<E extends Comparable<E>> implements BinaryTree<
         return (leftResult != null) ? leftResult : rightResult;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public E getRoot() {
         return root.getItem();
